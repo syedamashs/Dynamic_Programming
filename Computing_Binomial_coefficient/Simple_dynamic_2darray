@@ -1,0 +1,23 @@
+//Using Simple Recurrence Relations!!!!
+#include <stdio.h>
+int binomialcoeff(int n,int k){
+    
+    int c[n+1][k+1];
+    for(int i=0;i<=n;i++){
+        for(int j=0;j<=(i<k ? i:k);j++){
+            if(i==j || j==0){
+                c[i][j]=1;
+    }else{
+        c[i][j]=c[i-1][j-1]+c[i-1][j];
+    }
+ }}
+ 
+ return c[n][k];
+}
+int main() {
+    
+    printf("Binomial Coefficient :\n");
+    printf("%d",binomialcoeff(4,2));
+
+    return 0;
+}
