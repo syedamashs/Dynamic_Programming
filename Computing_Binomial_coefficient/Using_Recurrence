@@ -1,0 +1,16 @@
+//Using Simple Recurrence Relations!!!!
+#include <stdio.h>
+int binomialcoeff(int n,int k){
+    if(n==k || k==0){
+        return 1;
+    }
+    
+    return binomialcoeff(n-1,k-1)+binomialcoeff(n-1,k);
+}
+int main() {
+    
+    printf("Binomial Coefficient :\n");
+    printf("%d",binomialcoeff(4,2));
+
+    return 0;
+}
