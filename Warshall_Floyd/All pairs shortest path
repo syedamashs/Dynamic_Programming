@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h> // For memset()
+
+#define INF 99999 // Large value representing infinity
+
+int main() {
+    int n; // Number of vertices
+    printf("Enter the number of vertices: ");
+    scanf("%d", &n);
+
+    int c[n][n]; // Matrix to store graph edges (weights)
+
+    printf("Enter the adjacency matrix (use %d for infinity):\n", INF);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &c[i][j]);
+        }
+    }
+
+    // Floyd-Warshall Algorithm using ternary operator
+    for (int k = 0; k < n; k++) {          // Intermediate vertex
+        for (int i = 0; i < n; i++) {      // Source vertex
+            for (int j = 0; j < n; j++) {  // Destination vertex
+                // Update the shortest path using the ternary operator
+                c[i][j] = (c[i][j] < c[i][k] + c[k][j]) ? c[i][j] : (c[i][k] + c[k][j]);
+            }
+        }
+    }
+
+    // Output the shortest distance matrix
+    printf("\nShortest distances between every pair of vertices:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (c[i][j] == INF) {
+                printf("%4s", "INF"); // If no path exists, print "INF"
+            } else {
+                printf("%4d", c[i][j]); // Otherwise, print the shortest distance
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
