@@ -1,0 +1,35 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int binomialcoeff(int n,int k){
+    int c[k+1];
+    
+    memset(c,0,sizeof(c));
+
+    c[0]=1;
+    
+    for(int i=1;i<=n;i++){
+        for(int j= (i<k ? i : k);j>0;j--){
+            c[j]=c[j]+c[j-1];
+        }
+    }
+    return c[k];
+    
+}
+
+
+int main()
+{
+    printf("Binomial Coefficient:\n\n");
+    printf("%d",binomialcoeff(4,2));
+    return 0;
+}
